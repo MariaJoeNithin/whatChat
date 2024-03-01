@@ -8,10 +8,10 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 function App() {
-  const { user } = UserAuth();
+  const { currentUser } = UserAuth();
 
   const Protectedroute = ({ children }) => {
-    if (user && !user) {
+    if (currentUser && !currentUser) {
       return <Navigate to="/login" />;
     } else {
       return children;
