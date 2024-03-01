@@ -1,8 +1,20 @@
 import React, { useState } from "react";
 import { db } from "../config/FireBase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { UserAuth } from "../authRelated/Authcontext";
 
 const Search = () => {
+  const { user } = UserAuth();
   const [username, setUsername] = useState(null);
   const [thisUser, setThisUser] = useState(null);
   const [err, setErr] = useState(false);
@@ -32,6 +44,43 @@ const Search = () => {
     e.code === "Enter" && handleSearch();
   };
 
+  const handleSelect = async () => {
+    const combinedId =
+      user.uid > thisUser.uid
+        ? user.uid + thisUser.uid
+        : thisUser.uid + user.uid;
+    try {
+      const res = await getDoc(doc(db, "chats", combinedId));
+      if (!res.exists()) {
+        await setDoc(doc(db, "chats", combinedId), { messages: [] });
+
+        // create user chat
+        await updateDoc(doc(db, "userChats", thisUser.uid), {
+          [combinedId + ".userInfo"]: {
+            uid: thisUser.uid,
+            displayName: thisUser.displayName,
+            photoURL: thisUser.photoURL,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+
+        // create otherUser chat
+        await updateDoc(doc(db, "userChats", user.uid), {
+          [combinedId + ".userInfo"]: {
+            uid: user.uid,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          },
+          [combinedId + ".date"]: serverTimestamp(),
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    setThisUser(null);
+    setUsername("");
+  };
+
   return (
     <>
       <div className="search">
@@ -40,13 +89,17 @@ const Search = () => {
             type="text"
             placeholder="search user"
             onKeyDown={handleKey}
+            value={username}
             onChange={(e) => setUsername(e.target.value)}
             className="bg-transparent border w-full rounded-lg p-2 outline-none"
           />
         </div>
         {err && <span>User Not Found</span>}
         {thisUser && (
-          <div className="userChat border-b p-1 grid grid-cols-5 h-14 hover:bg-slate-500 transition-all duration-150 ">
+          <div
+            className="userChat border-b p-1 grid grid-cols-5 h-14 hover:bg-slate-500 transition-all duration-150 "
+            onClick={handleSelect}
+          >
             <div className=" col-span-1 flex h-full justify-center items-center">
               <img
                 src={thisUser?.profileURL}
