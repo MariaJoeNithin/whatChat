@@ -1,4 +1,3 @@
-import React from "react";
 import "../index.css";
 import Chatnav from "./Chatnav";
 import Messages from "./Messages";
@@ -14,7 +13,7 @@ const Chat = () => {
       <p className="w-full h-full overflow-y-scroll">
         <Messages />
       </p>
-      <div className=" h-11 bottom-0 w-full">
+      <div className=" h-12 bottom-0 w-full">
         <Input />
       </div>
     </div>

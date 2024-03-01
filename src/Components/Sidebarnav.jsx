@@ -5,10 +5,10 @@ import { db } from "../config/FireBase";
 import { doc, onSnapshot } from "firebase/firestore";
 
 const Sidebarnav = () => {
-  const { user, logOut } = UserAuth();
+  const { currentUser, logOut } = UserAuth();
   const navigate = useNavigate();
 
-  console.log(user && user);
+  console.log(currentUser && currentUser);
 
   const handleLogout = async () => {
     try {
@@ -28,13 +28,17 @@ const Sidebarnav = () => {
             <img
               className=" h-8 w-8 rounded-full object-cover object-center"
               src={
-                user && user?.photoURL
-                  ? user?.photoURL
+                currentUser && currentUser?.photoURL
+                  ? currentUser?.photoURL
                   : "https://static-00.iconduck.com/assets.00/user-avatar-1-icon-2048x2048-935gruik.png"
               }
-              alt={user?.displayName ? `${user?.displayName}` : "user"}
+              alt={
+                currentUser?.displayName
+                  ? `${currentUser?.displayName}`
+                  : "user"
+              }
             />
-            {user?.displayName ? user?.displayName : "user"}
+            {currentUser?.displayName ? currentUser?.displayName : "user"}
           </div>
 
           <div className=" absolute hidden group-hover:flex top-15 right-0">

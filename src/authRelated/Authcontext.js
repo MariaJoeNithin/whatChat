@@ -14,7 +14,7 @@ import { setDoc, doc } from "firebase/firestore";
 const AuthContext = createContext();
 
 export function AuthContextProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
 
   const signUp = async (email, password, displayName, profilePic) => {
     try {
@@ -77,8 +77,9 @@ export function AuthContextProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser || null);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user || null);
+      console.log(user);
     });
     return () => {
       unsubscribe();
@@ -86,7 +87,7 @@ export function AuthContextProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signUp, logIn, logOut, user }}>
+    <AuthContext.Provider value={{ signUp, logIn, logOut, currentUser }}>
       {children}
     </AuthContext.Provider>
   );
