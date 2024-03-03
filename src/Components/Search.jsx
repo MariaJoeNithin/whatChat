@@ -22,7 +22,7 @@ const Search = () => {
   const [err, setErr] = useState(false);
 
   const handleSearch = async () => {
-    setErr(false); // Reset error state
+    setErr(false); 
     const q = query(
       collection(db, "users"),
       where("displayName", "==", username)

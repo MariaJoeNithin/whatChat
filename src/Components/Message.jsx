@@ -10,7 +10,7 @@ const Message = ({ message }) => {
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
-  }, [message]);
+  }, [message ,currentUser ]);
 
   return (
     <div
@@ -27,10 +27,9 @@ const Message = ({ message }) => {
         } flex flex-row my-2 gap-2 min-h-16 min-w-48 max-w-[500px] w-full`}
       >
         <div
-          className={`messageInfo  message.senderId === currentUser?.uid
-            ? " order-2"
-            : " order-1"
-        } flex flex-col h-full w-16 min-w-16 justify-start items-center`}
+          className={`messageInfo  ${
+            message.senderId === currentUser?.uid ? " order-2" : " order-1"
+          } flex flex-col h-full w-16 min-w-16 justify-start items-center`}
         >
           <img
             className=" w-8 min-w-8 h-8 rounded-full  object-cover object-center"

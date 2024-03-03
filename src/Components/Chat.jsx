@@ -5,7 +5,7 @@ import Input from "./Input";
 
 const Chat = () => {
   return (
-    <div className="chat w-full h-full bg-gray-200 flex flex-col">
+    <div className="chat w-full h-full bg-zinc-200 flex flex-col">
       <div className=" max-h-40">
         <Chatnav />
       </div>
@@ -13,7 +13,7 @@ const Chat = () => {
       <p className="w-full h-full overflow-y-scroll">
         <Messages />
       </p>
-      <div className=" h-12 bottom-0 w-full">
+      <div className=" h-14 bottom-0 w-full">
         <Input />
       </div>
     </div>

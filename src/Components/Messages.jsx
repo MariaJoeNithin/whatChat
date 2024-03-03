@@ -3,10 +3,12 @@ import Message from "./Message";
 import { ChatContext } from "../authRelated/ChatContext";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../config/FireBase";
+import { UserAuth } from "../authRelated/Authcontext";
 
 const Messages = () => {
   const [messages, setMessages] = useState([]);
   const { data } = useContext(ChatContext);
+  const { currentUser } = UserAuth();
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -29,7 +31,7 @@ const Messages = () => {
     };
 
     fetchMessages();
-  }, [data?.chatId]);
+  }, [data?.chatId, currentUser]);
 
   return (
     <div>

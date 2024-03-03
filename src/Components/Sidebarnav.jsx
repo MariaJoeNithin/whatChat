@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../authRelated/Authcontext";
-import { db } from "../config/FireBase";
-import { doc, onSnapshot } from "firebase/firestore";
 
 const Sidebarnav = () => {
   const { currentUser, logOut } = UserAuth();
@@ -21,8 +18,14 @@ const Sidebarnav = () => {
 
   return (
     <>
-      <nav className="flex flex-row justify-between h-full items-center p-2 bg-gray-700 text-white">
-        <div>Logo</div>
+      <nav className="flex flex-row relative justify-between h-full items-center p-2 bg-gray-700 text-white">
+        <div>
+          <img
+            className="rounded-xl h-12 mx-auto"
+            src="https://www.app-download.com/files/image/app/watchchat-2-fuer-whatsapp-icon.jpg"
+            alt="logo"
+          />
+        </div>
         <div className="relative group cursor-pointer">
           <div className="flex flex-col justify-center items-center">
             <img

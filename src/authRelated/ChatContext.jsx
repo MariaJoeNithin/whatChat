@@ -1,10 +1,16 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 import { UserAuth } from "./Authcontext";
 
 export const ChatContext = createContext();
 
 export const ChatContextProvider = ({ children }) => {
   const { currentUser } = UserAuth();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  function togglePopup() {
+    setIsOpen(!isOpen);
+  }
 
   const INITIAL_STATE = {
     chatId: "null",
@@ -30,7 +36,9 @@ export const ChatContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(chatReducer, INITIAL_STATE);
 
   return (
-    <ChatContext.Provider value={{ data: state, dispatch }}>
+    <ChatContext.Provider
+      value={{ data: state, dispatch, isOpen, togglePopup }}
+    >
       {children}
     </ChatContext.Provider>
   );

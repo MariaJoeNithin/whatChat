@@ -11,10 +11,10 @@ function App() {
   const { currentUser } = UserAuth();
 
   const Protectedroute = ({ children }) => {
-    if (currentUser && !currentUser) {
-      return <Navigate to="/login" />;
-    } else {
+    if (currentUser && currentUser) {
       return children;
+    } else {
+      return <Navigate to="/login" />;
     }
   };
 

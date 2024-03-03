@@ -51,11 +51,15 @@ const Chats = () => {
               <h1 className=" text-xl font-bold">
                 {chat[1]?.userInfo?.displayName}
               </h1>
-              <p className="text-sm text-gray-600">
-                {chat[1]?.lastMessage?.text.length > 40
-                  ? chat[1]?.lastMessage?.text.substring(0, 40) + "..."
-                  : chat[1]?.lastMessage?.text}
-              </p>
+              {chat[1]?.lastMessage?.text ? (
+                <p className="text-sm text-gray-600">
+                  {chat[1]?.lastMessage?.text.length > 40
+                    ? chat[1]?.lastMessage?.text.substring(0, 40) + "..."
+                    : chat[1]?.lastMessage?.text}
+                </p>
+              ) : (
+                "doc"
+              )}
             </div>
           </div>
         ))}

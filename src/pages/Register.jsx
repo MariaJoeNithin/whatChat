@@ -4,7 +4,7 @@ import { UserAuth } from "../authRelated/Authcontext";
 import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
-  const { signUp, user } = UserAuth();
+  const { signUp, user, ggllogIn } = UserAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -30,6 +30,15 @@ const Register = () => {
     }
     try {
       await signUp(email, password, displayName, profilePic);
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleSignwithggl = async () => {
+    try {
+      await ggllogIn();
       navigate("/");
     } catch (error) {
       setError(error.message);
@@ -112,6 +121,13 @@ const Register = () => {
             Sign Up
           </button>
         </form>
+        <p>Or</p>
+        <button
+          className="p-4 bg-blue-600 text-white rounded-lg"
+          onClick={handleSignwithggl}
+        >
+          Sign in with Google
+        </button>
         <p>
           do you have an account?
           <Link to="/login" className="text-purple-700">

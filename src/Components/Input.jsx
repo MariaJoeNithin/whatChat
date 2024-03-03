@@ -76,7 +76,7 @@ const Input = () => {
   return (
     <div className="input flex flex-row bg-gray-300 p-2 items-center">
       <input
-        className="w-[100%] bg-transparent h-full col-span-8 outline-none px-3 text-gray-700"
+        className="w-[100%] bg-transparent h-full col-span-8 outline-none px-3 text-gray-700 rounded-full border p-2 shadow-lg"
         type="text"
         placeholder="Message"
         onChange={(e) => setText(e.target.value)}

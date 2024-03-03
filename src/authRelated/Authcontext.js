@@ -7,6 +7,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "firebase/auth";
 
 import { setDoc, doc } from "firebase/firestore";
@@ -67,6 +69,28 @@ export function AuthContextProvider({ children }) {
     }
   }
 
+  async function ggllogIn() {
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
+
+      await setDoc(doc(db, "users", userCredential?.user.uid), {
+        uid: userCredential?.user?.uid,
+        displayName: userCredential?.user?.displayName,
+        email: userCredential?.user?.email,
+        photoURL: userCredential?.user?.photoURL,
+      });
+
+      await setDoc(doc(db, "userChats", userCredential?.user.uid), {});
+
+      console.log("User signed up successfully!");
+      return userCredential.user;
+    } catch (error) {
+      console.error("Error signing in with Google:", error.message);
+      throw error;
+    }
+  }
+
   async function logOut() {
     try {
       await signOut(auth);
@@ -87,7 +111,9 @@ export function AuthContextProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signUp, logIn, logOut, currentUser }}>
+    <AuthContext.Provider
+      value={{ signUp, logIn, logOut, currentUser, ggllogIn }}
+    >
       {children}
     </AuthContext.Provider>
   );
