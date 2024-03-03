@@ -5,12 +5,21 @@ import { UserAuth } from "../authRelated/Authcontext";
 const Login = () => {
   const navigate = useNavigate();
 
-  const { logIn, user } = UserAuth();
+  const { logIn, user, googlelogIn } = UserAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const emailInputRef = useRef(null);
+
+  const handleSignwithggl = async () => {
+    try {
+      await googlelogIn();
+      navigate("/");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,6 +73,13 @@ const Login = () => {
             Login
           </button>
         </form>
+        <p>Or</p>
+        <button
+          className="p-4 bg-blue-600 text-white rounded-lg"
+          onClick={handleSignwithggl}
+        >
+          Log in with Google
+        </button>
         <p>
           To create an account.
           <Link to="/register" className="text-purple-700">

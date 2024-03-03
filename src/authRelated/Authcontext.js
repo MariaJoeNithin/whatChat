@@ -69,6 +69,17 @@ export function AuthContextProvider({ children }) {
     }
   }
 
+  const googlelogIn = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const userCredential = await signInWithPopup(auth, provider);
+      console.log("User signed up successfully!");
+      return userCredential.user;
+    } catch (error) {
+      alert("error", error);
+    }
+  };
+
   async function ggllogIn() {
     try {
       const provider = new GoogleAuthProvider();
@@ -112,7 +123,7 @@ export function AuthContextProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ signUp, logIn, logOut, currentUser, ggllogIn }}
+      value={{ signUp, logIn, logOut, currentUser, ggllogIn, googlelogIn }}
     >
       {children}
     </AuthContext.Provider>
