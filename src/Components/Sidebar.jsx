@@ -10,11 +10,15 @@ const Sidebar = () => {
   const { isOpen } = useContext(ChatContext);
   const { togglePopup } = useContext(ChatContext);
   return (
-    <div className="relative max-w-[300px] md:max-w-80">
+    <div
+      className={`${
+        isOpen === false ? "w-0" : "w-full"
+      } absolute md:relative h-full  max-w-[300px] md:max-w-80`}
+    >
       <div
         className={`${
           isOpen === false
-            ? "visible delay-300 translate-x-[0%]"
+            ? "visible delay-300 translate-x-[0]"
             : "-translate-x-[100%] invisible"
         } transition-all w-full text-2xl`}
       >
@@ -28,8 +32,8 @@ const Sidebar = () => {
       <div
         className={`${
           isOpen
-            ? "translate-x-[0] flex-col relative"
-            : "-translate-x-[100%] w-full absolute"
+            ? "translate-x-[0] flex-col relative visible"
+            : "-translate-x-[100%] w-full absolute invisible "
         }  z-50 transition-all duration-300 top-0 left-0 bg-gray-400 max-w-[300px] md:max-w-80 md:min-w-80 h-full w-full sm:w-80`}
       >
         <div className=" max-h-40">
