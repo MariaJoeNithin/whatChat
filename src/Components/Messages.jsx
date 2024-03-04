@@ -20,7 +20,7 @@ const Messages = () => {
               setMessages(doc.data().messages);
             } else {
               console.log("No such document!");
-              setMessages([]); // Set messages to an empty array if the document doesn't exist
+              setMessages([]);
             }
           });
           return () => unsubscribe();
@@ -35,9 +35,17 @@ const Messages = () => {
 
   return (
     <div>
-      {messages.map((m) => (
-        <Message message={m} key={m.id} />
-      ))}
+      {data?.chatId === "null" ? (
+        <p className="text-lg font-bold text-center m-5">
+          Select A User To Chat
+        </p>
+      ) : (
+        <>
+          {messages.map((m) => (
+            <Message message={m} key={m.id} />
+          ))}
+        </>
+      )}
     </div>
   );
 };

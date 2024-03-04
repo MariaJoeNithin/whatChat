@@ -5,7 +5,7 @@ const Sidebarnav = () => {
   const { currentUser, logOut } = UserAuth();
   const navigate = useNavigate();
 
-  console.log(currentUser && currentUser);
+  // console.log(currentUser && currentUser);
 
   const handleLogout = async () => {
     try {

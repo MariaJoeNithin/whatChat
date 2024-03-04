@@ -1,7 +1,7 @@
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import ErrorPage from "./pages/errorPage";
+import ErrorPage from "./Components/ErrorPage";
 import "./index.css";
 import { UserAuth } from "./authRelated/Authcontext";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";

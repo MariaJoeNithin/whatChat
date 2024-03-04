@@ -6,7 +6,7 @@ export const ChatContext = createContext();
 export const ChatContextProvider = ({ children }) => {
   const { currentUser } = UserAuth();
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   function togglePopup() {
     setIsOpen(!isOpen);

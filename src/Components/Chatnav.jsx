@@ -3,9 +3,11 @@ import React, { useContext } from "react";
 import { IoVideocam } from "react-icons/io5";
 import { IoPersonAdd } from "react-icons/io5";
 import { ChatContext } from "../authRelated/ChatContext";
+import { useNavigate } from "react-router-dom";
 
 const Chatnav = () => {
   const { data } = useContext(ChatContext);
+  const navigate = useNavigate();
   return (
     <>
       <nav className="flex flex-row justify-between h-full items-center p-2 bg-gray-500 text-white">
@@ -32,12 +34,12 @@ const Chatnav = () => {
           </div>
         </div>
         <div className="flex flex-row gap-2 text-xl mx-5">
-          <button>
+          <button onClick={() => navigate("/er")}>
             <IoVideocam />
           </button>
-          <button>
+          {/* <button>
             <IoPersonAdd />
-          </button>
+          </button> */}
         </div>
       </nav>
     </>

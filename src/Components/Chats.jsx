@@ -37,7 +37,7 @@ const Chats = () => {
           <div
             key={index}
             onClick={() => handleSelect(chat[1].userInfo)}
-            className="userChat border-b cursor-pointer p-1 grid grid-cols-5 h-14 hover:bg-slate-500 transition-all duration-150 "
+            className="userChat  cursor-pointer p-1 grid grid-cols-5 h-14 hover:bg-slate-500 transition-all duration-150 "
           >
             <div className=" col-span-1 flex h-full justify-center items-center">
               <img
