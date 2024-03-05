@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { UserAuth } from "../authRelated/Authcontext";
 import { ChatContext } from "../authRelated/ChatContext";
+import { IoFolderOpen } from "react-icons/io5";
 
 const Message = ({ message }) => {
   const { currentUser } = UserAuth();
@@ -72,11 +73,15 @@ const Message = ({ message }) => {
               {(message?.fileURL || message?.applicationURL) && (
                 <a
                   href={message.fileURL}
-                  className="text-blue-300 hover:underline"
+                  className="text-blue-300 hover:underline cursor-pointer flex flex-row gap-2 flex-wrap break-words"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   {/* File Attachment */}
+                  <span className="text-white text-2xl">
+                    <IoFolderOpen />
+                  </span>
+
                   {message?.fileName ? `${message?.fileName}` : "File"}
                 </a>
               )}
