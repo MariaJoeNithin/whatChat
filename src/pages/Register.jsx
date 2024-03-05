@@ -59,7 +59,7 @@ const Register = () => {
 
   return (
     <div className="formContainer w-screen h-screen flex justify-center items-center">
-      <div className="formWrapper p-5 border rounded-lg flex flex-col gap-5 bg-white">
+      <div className="formWrapper p-5 md:min-w-96 min-w-56 border rounded-lg flex flex-col gap-5 bg-white">
         <span className="logo">
           <img
             className="rounded-xl h-40 mx-auto"

@@ -38,7 +38,7 @@ const Login = () => {
   };
   return (
     <div className="formContainer w-screen h-screen flex justify-center items-center">
-      <div className="formWrapper p-5 bg-white border rounded-lg flex flex-col gap-5">
+      <div className="formWrapper p-5 bg-white md:min-w-96 min-w-56 border rounded-lg flex flex-col gap-5">
         <span className="logo">
           <img
             className="rounded-xl h-40 mx-auto"
@@ -80,6 +80,23 @@ const Login = () => {
         >
           Log in with Google
         </button>
+        <div className="flex justify-between mb-8 gap-3">
+          <p
+            className="relative group transition-all duration-150"
+            // onClick={
+            //   (() => setEmail("j@mailsample.com"),
+            //   setPassword("123456"))
+            // }
+          >
+            SampleCredentials
+            <p className=" hidden group-hover:flex invisible group-hover:visible absolute top-6 text-white bg-black/50 backdrop-blur-lg rounded-2xl p-5 w-56 transition-all duration-150">
+              Email&nbsp;&nbsp;:&nbsp;&nbsp;j@mailsample.com <br />
+              Password&nbsp;&nbsp;:&nbsp;&nbsp;123456
+            </p>
+          </p>
+
+          <p>Need Help?</p>
+        </div>
         <p>
           To create an account.
           <Link to="/register" className="text-purple-700">
