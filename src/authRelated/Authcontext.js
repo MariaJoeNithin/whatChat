@@ -121,6 +121,8 @@ export function AuthContextProvider({ children }) {
     };
   }, []);
 
+  console.log(currentUser);
+
   return (
     <AuthContext.Provider
       value={{ signUp, logIn, logOut, currentUser, ggllogIn, googlelogIn }}

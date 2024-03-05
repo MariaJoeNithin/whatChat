@@ -13,21 +13,23 @@ const Sidebar = () => {
     <div
       className={`${
         isOpen === false ? "w-0" : "w-full"
-      } absolute md:relative h-full  max-w-[300px] md:max-w-80`}
+      } absolute md:relative h-full transition-all duration-300 max-w-[300px] md:max-w-80`}
     >
       <div
         className={`${
           isOpen === false
-            ? "visible delay-300 translate-x-[0]"
-            : "-translate-x-[100%] invisible"
-        } transition-all w-full text-2xl`}
+            ? "visible delay-300 translate-x-[0] h-full w-0 "
+            : "-translate-x-[100%] invisible  "
+        } transition-all text-2xl`}
       >
-        <button
-          className={` absolute h-20 z-[60] -right-5 top-96 flex items-center  p-2 rounded-full bg-gray-600 text-white`}
-          onClick={() => togglePopup()}
-        >
-          <CiMenuBurger className="text-[1.5rem]" />
-        </button>
+        <div className="h-full absolute flex justify-center items-center">
+          <button
+            className={` absolute  z-[60] h-full -right-5 flex items-center `}
+            onClick={() => togglePopup()}
+          >
+            <CiMenuBurger className="text-[1.5rem] w-10 h-20 p-2 rounded-full bg-gray-600 text-white" />
+          </button>
+        </div>
       </div>
       <div
         className={`${
@@ -37,15 +39,17 @@ const Sidebar = () => {
         }  z-50 transition-all duration-300 top-0 left-0 bg-gray-400 max-w-[300px] md:max-w-80 md:min-w-80 h-full w-full sm:w-80`}
       >
         <div className=" max-h-40">
-          <div className="w-full text-2xl">
+          <div className=" right-0 text-2xl h-full absolute flex justify-center items-center">
             <button
-              className="absolute h-20 z-[60] -right-5 top-96 flex items-center  p-2 rounded-full bg-gray-600 text-white"
+              className="absolute z-[60] -right-5"
               onClick={() => togglePopup()}
             >
-              <CiMenuBurger className="text-[1.5rem]" />
+              <CiMenuBurger className="text-[1.5rem] w-10 h-20 p-2 rounded-full bg-gray-600 text-white" />
             </button>
           </div>
-          <Sidebarnav />
+          <div className="relative z-50">
+            <Sidebarnav />
+          </div>
         </div>
         <Search />
         <Chats />

@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "../Components/Sidebar";
 import Chat from "../Components/Chat";
+import UserDetail from "../Components/userDetail";
 
 const Home = () => {
   return (
@@ -9,6 +10,7 @@ const Home = () => {
         <div className="relative flex w-full h-[80vh] rounded-xl overflow-hidden shadow-2xl border border-gray-300">
           <Sidebar />
           <Chat />
+          {/* <UserDetail /> */}
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../authRelated/Authcontext";
+import { MdGroupAdd } from "react-icons/md";
 
 const Sidebarnav = () => {
   const { currentUser, logOut } = UserAuth();
@@ -18,14 +19,23 @@ const Sidebarnav = () => {
 
   return (
     <>
-      <nav className="flex flex-row relative justify-between h-full items-center p-2 bg-gray-700 text-white">
-        <div>
+      <nav className="z-50 flex flex-row relative gap-3 justify-between h-full items-center p-2 bg-gray-700 text-white">
+        <div className="flex flex-row items-center justify-center gap-2">
           <img
-            className="rounded-xl h-12 mx-auto"
+            className="rounded-xl h-12 min-w-12 mx-auto"
             src="https://www.app-download.com/files/image/app/watchchat-2-fuer-whatsapp-icon.jpg"
             alt="logo"
           />
+          <div className="w-full text-2xl">
+            <button
+              className="flex items-center  p-2 rounded-full bg-red-200 text-red-600"
+              onClick={() => navigate("/er")}
+            >
+              <MdGroupAdd className="text-[1.5rem]" />
+            </button>
+          </div>
         </div>
+
         <div className="relative group cursor-pointer">
           <div className="flex flex-col justify-center items-center">
             <img
