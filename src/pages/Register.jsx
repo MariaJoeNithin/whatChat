@@ -121,7 +121,7 @@ const Register = () => {
             Sign Up
           </button>
         </form>
-        <p>Or</p>
+        <p className=" text-center">Or</p>
         <button
           className="p-4 bg-blue-600 text-white rounded-lg"
           onClick={handleSignwithggl}
