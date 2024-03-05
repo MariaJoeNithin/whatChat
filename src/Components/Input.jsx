@@ -90,7 +90,6 @@ const Input = () => {
     }
   };
 
-
   const handleKey = (e) => {
     if (e.code === "Enter") {
       handleSend();
